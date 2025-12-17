@@ -1,9 +1,13 @@
-name = "cf-image-proxy"
-type = "javascript"
-webpack_config = "webpack.config.js"
-account_id = "TODO"
-workers_dev = true
+name = "hvh-steam-proxy"
+main = "src/index.js"
+compatibility_date = "2024-12-18"
 
-[env.production]
-zone_id = "TODO"
-route = "TODO"
+# 绑定自定义域名
+# 确保 img.hvh.one 在你的 Cloudflare DNS 中（可以是 CNAME 指向 workers.dev，或者让 Wrangler 自动处理）
+# 首次部署可能需要 Wrangler 自动添加 Custom Domain 记录
+[[routes]]
+pattern = "img.hvh.one/*"
+custom_domain = true
+
+[observability]
+enabled = true
